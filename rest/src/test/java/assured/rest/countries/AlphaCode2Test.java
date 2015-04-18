@@ -6,23 +6,20 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import assured.rest.BaseRest;
+
 import com.jayway.restassured.response.Response;
 
-public class AlphaCode2Test {
+public class AlphaCode2Test extends BaseRest{
 	
-	private static final String URI = "http://services.groupkt.com/country/get/iso2code/";
-	private static final String KEY_PREFIX = "RestResponse.result.";
-	private static final String KEY_NAME = "name";
-	private static final String KEY_ALPHA_CODE_2 = "alpha2_code";
-	private static final String KEY_ALPHA_CODE_3 = "alpha3_code";
-	
+	private static final String URI = getBaseUri() +"get/iso2code/";	
 	
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String aplha2, String alpha3) {
 		final Response RESPONSE = get(URI + country);
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_NAME, equalTo(name));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_2, equalTo(aplha2));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_3, equalTo(alpha3));
+		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(name));
+		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(aplha2));
+		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(alpha3));
 	}
 	
 	

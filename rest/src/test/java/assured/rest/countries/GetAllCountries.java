@@ -6,22 +6,20 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import assured.rest.BaseRest;
+
 import com.jayway.restassured.response.Response;
 
-public class GetAllCountries {
+public class GetAllCountries extends BaseRest{
 	
-	private static final String URI = "http://services.groupkt.com/country/get/all";
-	private static final String KEY_PREFIX = "RestResponse.result.";
-	private static final String KEY_NAME = "name";
-	private static final String KEY_ALPHA_CODE_2 = "alpha2_code";
-	private static final String KEY_ALPHA_CODE_3 = "alpha3_code";
+	private static final String URI = getBaseUri() +"get/all";
 		
 	@Test (dataProvider = "Countries")
-	public void search_for_all_countries(String objectNumber, String name, String aplha2, String alpha3) {
+	public void search_for_all_countries(int objectNumber, String name, String aplha2, String alpha3) {
 		final Response RESPONSE = get(URI);
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_NAME + objectNumber, equalTo(name));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_2 + objectNumber, equalTo(aplha2));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_3 + objectNumber, equalTo(alpha3));
+		RESPONSE.then().assertThat().body(getNameFromPosition(objectNumber), equalTo(name));
+		RESPONSE.then().assertThat().body(getAlpha2FromPosition(objectNumber), equalTo(aplha2));
+		RESPONSE.then().assertThat().body(getAlpha3FromPosition(objectNumber), equalTo(alpha3));
 	}
 	
 	
@@ -30,11 +28,11 @@ public class GetAllCountries {
 	  public static Object[][] countries() {
 	 // First 5 of get all countries resource
 	        return new Object[][] { 
-	        		{ "[0]" , "Afghanistan" , "AF" , "AFG"},
-	        		{ "[1]" , "Åland Islands" , "AX" , "ALA"},
-	        		{ "[2]" , "Albania" , "AL" , "ALB"},
-	        		{ "[3]" , "Algeria" , "DZ" , "DZA"},
-	        		{ "[4]" , "American Samoa" , "AS" , "ASM"},
+	        		{ 0 , "Afghanistan" , "AF" , "AFG"},
+	        		{ 1 , "Åland Islands" , "AX" , "ALA"},
+	        		{ 2 , "Albania" , "AL" , "ALB"},
+	        		{ 3 , "Algeria" , "DZ" , "DZA"},
+	        		{ 4 , "American Samoa" , "AS" , "ASM"},
 	        		};
 	}
 	

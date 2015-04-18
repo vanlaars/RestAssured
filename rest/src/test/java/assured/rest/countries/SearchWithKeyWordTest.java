@@ -6,23 +6,20 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import assured.rest.BaseRest;
+
 import com.jayway.restassured.response.Response;
 
-public class SearchWithKeyWordTest {
+public class SearchWithKeyWordTest extends BaseRest{
 	
-	private static final String URI = "http://services.groupkt.com/country/search?text=";
-	private static final String KEY_PREFIX = "RestResponse.result.";
-	private static final String KEY_NAME = "name";
-	private static final String KEY_ALPHA_CODE_2 = "alpha2_code";
-	private static final String KEY_ALPHA_CODE_3 = "alpha3_code";
-	private static final String OBJECT_NUMBER = "[0]";
+	private static final String URI = getBaseUri() + "search?text=";
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_with_keyword_happy(String keyword, String name, String aplha2, String alpha3) {
 		final Response RESPONSE = get(URI + keyword);
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_NAME + OBJECT_NUMBER, equalTo(name));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_2 + OBJECT_NUMBER, equalTo(aplha2));
-		RESPONSE.then().assertThat().body(KEY_PREFIX + KEY_ALPHA_CODE_3 + OBJECT_NUMBER, equalTo(alpha3));
+		RESPONSE.then().assertThat().body(getNameFromPosition(0), equalTo(name));
+		RESPONSE.then().assertThat().body(getAlpha2FromPosition(0), equalTo(aplha2));
+		RESPONSE.then().assertThat().body(getAlpha3FromPosition(0), equalTo(alpha3));
 	}
 	
 	
