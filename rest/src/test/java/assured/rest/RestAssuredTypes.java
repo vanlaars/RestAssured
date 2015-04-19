@@ -10,19 +10,20 @@ import com.jayway.restassured.response.Response;
 
 public class RestAssuredTypes extends BaseRest {
 
-	private static final String URI_INDIA = getBaseUri() +"get/iso2code/IN";
 	private static final String VALUE_NAME = "India";
 	private static final String VALUE_ALPHA_CODE_2 = "IN";
 	private static final String VALUE_ALPHA_CODE_3 = "IND";
+	private static final String URI_INDIA = getBaseUri() + getAlpha2Resource() + VALUE_ALPHA_CODE_2;
+
 	
 
 	@Test
 	public void search_for_india_with_response() {
 		final Response RESPONSE = get(URI_INDIA);
-		show_output_service_from_uri(URI_INDIA);
 		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(VALUE_NAME));
 		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(VALUE_ALPHA_CODE_2));
 		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(VALUE_ALPHA_CODE_3));
+		RESPONSE.then().assertThat().body("RestResponse.messages[1]", equalTo("Country found matching code [IN]."));
 	}
 
 	@Test

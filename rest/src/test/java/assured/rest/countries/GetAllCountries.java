@@ -12,7 +12,7 @@ import com.jayway.restassured.response.Response;
 
 public class GetAllCountries extends BaseRest{
 	
-	private static final String URI = getBaseUri() +"get/all";
+	private static final String URI = getBaseUri() + getAllResource();
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_all_countries(int objectNumber, String name, String aplha2, String alpha3) {

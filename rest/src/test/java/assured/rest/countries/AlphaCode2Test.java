@@ -12,14 +12,16 @@ import com.jayway.restassured.response.Response;
 
 public class AlphaCode2Test extends BaseRest{
 	
-	private static final String URI = getBaseUri() +"get/iso2code/";	
+	private static final String URI_PREFIX = getBaseUri() + getAlpha2Resource();	
 	
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String aplha2, String alpha3) {
-		final Response RESPONSE = get(URI + country);
+		final String URI = URI_PREFIX + country;
+		final Response RESPONSE = get(URI);
 		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(name));
 		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(aplha2));
 		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(alpha3));
+		show_output_service_from_uri(URI);
 	}
 	
 	
