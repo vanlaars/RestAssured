@@ -1,7 +1,6 @@
 package assured.rest.countries;
 
 import static com.jayway.restassured.RestAssured.get;
-import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,17 +11,19 @@ import com.jayway.restassured.response.Response;
 
 public class SearchWithKeyWordTest extends BaseRest{
 	
-	private static final String URI = getBaseUri() + "search?text=";
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_with_keyword_happy(String keyword, String name, String aplha2, String alpha3) {
-		final Response RESPONSE = get(URI + keyword);
-		RESPONSE.then().assertThat().body(getNameFromPosition(0), equalTo(name));
-		RESPONSE.then().assertThat().body(getAlpha2FromPosition(0), equalTo(aplha2));
-		RESPONSE.then().assertThat().body(getAlpha3FromPosition(0), equalTo(alpha3));
+		final String uri = getBaseUri() + getResourceSearchWith(keyword);
+		final Response RESPONSE = get(uri);
+		show_output_service_from_uri(uri);
+		//		
+		assertResponse(RESPONSE, getNameFromPosition(0), name);
+		assertResponse(RESPONSE, getAlpha2FromPosition(0), aplha2);
+		assertResponse(RESPONSE, getAlpha3FromPosition(0), alpha3);
 	}
-	
-	
+		
+
 	@DataProvider(name = "Countries")
 	 
 	  public static Object[][] countries() {

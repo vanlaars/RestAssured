@@ -13,7 +13,7 @@ public class RestAssuredTypes extends BaseRest {
 	private static final String VALUE_NAME = "India";
 	private static final String VALUE_ALPHA_CODE_2 = "IN";
 	private static final String VALUE_ALPHA_CODE_3 = "IND";
-	private static final String URI_INDIA = getBaseUri() + getAlpha2Resource() + VALUE_ALPHA_CODE_2;
+	private static final String URI_INDIA = getBaseUri() + getResourceAlpha2() + VALUE_ALPHA_CODE_2;
 
 	
 
@@ -23,7 +23,6 @@ public class RestAssuredTypes extends BaseRest {
 		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(VALUE_NAME));
 		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(VALUE_ALPHA_CODE_2));
 		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(VALUE_ALPHA_CODE_3));
-		RESPONSE.then().assertThat().body("RestResponse.messages[1]", equalTo("Country found matching code [IN]."));
 	}
 
 	@Test

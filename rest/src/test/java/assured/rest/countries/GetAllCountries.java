@@ -1,7 +1,6 @@
 package assured.rest.countries;
 
 import static com.jayway.restassured.RestAssured.get;
-import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,14 +11,14 @@ import com.jayway.restassured.response.Response;
 
 public class GetAllCountries extends BaseRest{
 	
-	private static final String URI = getBaseUri() + getAllResource();
+	private static final String URI = getBaseUri() + getResourceAll();
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_all_countries(int objectNumber, String name, String aplha2, String alpha3) {
 		final Response RESPONSE = get(URI);
-		RESPONSE.then().assertThat().body(getNameFromPosition(objectNumber), equalTo(name));
-		RESPONSE.then().assertThat().body(getAlpha2FromPosition(objectNumber), equalTo(aplha2));
-		RESPONSE.then().assertThat().body(getAlpha3FromPosition(objectNumber), equalTo(alpha3));
+		assertResponse(RESPONSE, getNameFromPosition(objectNumber), name);
+		assertResponse(RESPONSE, getAlpha2FromPosition(objectNumber), aplha2);
+		assertResponse(RESPONSE, getAlpha3FromPosition(objectNumber), alpha3);
 	}
 	
 	

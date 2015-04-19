@@ -1,6 +1,7 @@
 package assured.rest;
 
 import static com.jayway.restassured.RestAssured.get;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ public class BaseRest {
 	private static final String BASE_URI = "http://services.groupkt.com/country/";
 	private static final String GET_ALPHA2_RESOURCE = "get/iso2code/";
 	private static final String GET_ALL_RESOURCE = "get/all";
+	private static final String SEARCH_WITH_RESOURCE = "search?text=";
 
 	private static final String RESPONSE_PREFIX = "RestResponse.result.";
 	private static final String RESPONSE_NAME = "name";
@@ -45,12 +47,16 @@ public class BaseRest {
 		return BASE_URI;
 	}
 	
-	public static String getAlpha2Resource() {
+	public static String getResourceAlpha2() {
 		return GET_ALPHA2_RESOURCE;
 	}
 	
-	public static String getAllResource(){
+	public static String getResourceAll(){
 		return GET_ALL_RESOURCE;
+	}
+	
+	public static String getResourceSearchWith(String text){
+		return SEARCH_WITH_RESOURCE + text;
 	}
 	
 	public static String getNameFromPosition(int position){
@@ -65,5 +71,8 @@ public class BaseRest {
 	public static String getAlpha3FromPosition(int position){
 		return String.format(RESPONSE_PREFIX + RESPONSE_ALPHA3 + "[%1$s]", position);
 	}
-
+	
+	public void assertResponse(Response response, String actual , String expected){ 
+		response.then().assertThat().body(actual, equalTo(expected));
+	}
 }

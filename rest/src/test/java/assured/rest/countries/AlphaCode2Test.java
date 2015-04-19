@@ -1,7 +1,6 @@
 package assured.rest.countries;
 
 import static com.jayway.restassured.RestAssured.get;
-import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,16 +11,17 @@ import com.jayway.restassured.response.Response;
 
 public class AlphaCode2Test extends BaseRest{
 	
-	private static final String URI_PREFIX = getBaseUri() + getAlpha2Resource();	
+	private static final String URI_PREFIX = getBaseUri() + getResourceAlpha2();	
 	
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String aplha2, String alpha3) {
 		final String URI = URI_PREFIX + country;
 		final Response RESPONSE = get(URI);
-		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(name));
-		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(aplha2));
-		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(alpha3));
+		//
 		show_output_service_from_uri(URI);
+		assertResponse(RESPONSE, getResponseNameSingleResult(), name);
+		assertResponse(RESPONSE, getResponseAlpha2SingleResult(), aplha2);
+		assertResponse(RESPONSE, getResponseAlpha3SingleResult(), alpha3);
 	}
 	
 	
