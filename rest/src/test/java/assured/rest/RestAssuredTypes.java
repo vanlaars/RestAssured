@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
+import assured.rest.countries.BaseRest;
+
 import com.jayway.restassured.response.Response;
 
 public class RestAssuredTypes extends BaseRest {

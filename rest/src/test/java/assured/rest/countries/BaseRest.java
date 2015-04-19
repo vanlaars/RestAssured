@@ -1,9 +1,11 @@
-package assured.rest;
+package assured.rest.countries;
 
 import static com.jayway.restassured.RestAssured.get;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.logging.Logger;
+
+import assured.rest.RestAssuredTypes;
 
 import com.jayway.restassured.response.Response;
 
