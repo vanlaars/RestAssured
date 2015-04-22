@@ -7,15 +7,15 @@ import org.testng.annotations.Test;
 
 import com.jayway.restassured.response.Response;
 
-public class GetAllCountries extends BaseRest{
+public class GetAllCountries extends BaseRestTest{
 	
 	private static final String URI = getBaseUri() + getResourceAll();
 		
 	@Test (dataProvider = "Countries")
-	public void search_for_all_countries(int objectNumber, String name, String aplha2, String alpha3) {
+	public void search_for_all_countries(int objectNumber, String name, String alpha2, String alpha3) {
 		final Response RESPONSE = get(URI);
 		assertResponse(RESPONSE, getNameFromPosition(objectNumber), name);
-		assertResponse(RESPONSE, getAlpha2FromPosition(objectNumber), aplha2);
+		assertResponse(RESPONSE, getAlpha2FromPosition(objectNumber), alpha2);
 		assertResponse(RESPONSE, getAlpha3FromPosition(objectNumber), alpha3);
 	}
 	

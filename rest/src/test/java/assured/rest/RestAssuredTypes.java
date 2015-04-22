@@ -6,11 +6,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import assured.rest.countries.BaseRest;
+import assured.rest.countries.BaseRestTest;
 
 import com.jayway.restassured.response.Response;
 
-public class RestAssuredTypes extends BaseRest {
+public class RestAssuredTypes extends BaseRestTest {
 
 	private static final String VALUE_NAME = "India";
 	private static final String VALUE_ALPHA_CODE_2 = "IN";

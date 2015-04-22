@@ -9,13 +9,14 @@ import assured.rest.RestAssuredTypes;
 
 import com.jayway.restassured.response.Response;
 
-public class BaseRest {
+public class BaseRestTest {
 	
 	private static final String BASE_URI = "http://services.groupkt.com/country/";
 	private static final String GET_ALPHA2_RESOURCE = "get/iso2code/";
 	private static final String GET_ALL_RESOURCE = "get/all";
 	private static final String SEARCH_WITH_RESOURCE = "search?text=";
 	private static final String RESPONSE_PREFIX = "RestResponse.result.";
+	private static final String RESPONSE_MESSAGES = "RestResponse.messages";
 	private static final String RESPONSE_NAME = "name";
 	private static final String RESPONSE_ALPHA2 = "alpha2_code";
 	private static final String RESPONSE_ALPHA3 = "alpha3_code";
@@ -71,6 +72,11 @@ public class BaseRest {
 	
 	public static String getAlpha3FromPosition(int position){
 		return String.format(RESPONSE_PREFIX + RESPONSE_ALPHA3 + "[%1$s]", position);
+	}
+	
+	public static String getMessageFromPosition(int position) {
+		return String.format(RESPONSE_MESSAGES + "[%1$s]", position);		
+				// "RestResponse.messages[1]"
 	}
 	
 	public void assertResponse(Response response, String actual , String expected){ 
