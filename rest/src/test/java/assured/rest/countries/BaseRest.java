@@ -15,7 +15,6 @@ public class BaseRest {
 	private static final String GET_ALPHA2_RESOURCE = "get/iso2code/";
 	private static final String GET_ALL_RESOURCE = "get/all";
 	private static final String SEARCH_WITH_RESOURCE = "search?text=";
-
 	private static final String RESPONSE_PREFIX = "RestResponse.result.";
 	private static final String RESPONSE_NAME = "name";
 	private static final String RESPONSE_ALPHA2 = "alpha2_code";

@@ -12,7 +12,27 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<xmlSuite>testng.xml</xmlSuite>
+		<parralel.type>methods</parralel.type>
+		<thread.count>50</thread.count>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/main/resources/${xmlSuite}</suiteXmlFile>
+					</suiteXmlFiles>
+					<parallel>${parralel.type}</parallel>
+					<threadCount>20</threadCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
