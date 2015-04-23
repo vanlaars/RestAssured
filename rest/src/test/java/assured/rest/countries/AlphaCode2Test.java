@@ -21,10 +21,11 @@ public class AlphaCode2Test extends BaseRestTest{
 		//
 		assertResponseStatusCode(response, 200);
 		assertContentType(response, contentType);
+		assertResponse(response, getMessageFromPosition(0), getMessageMoreWebservicesAvailable());
+		assertResponse(response, getMessageFromPosition(1), messagePrefix + country + messagePostFix);
 		assertResponse(response, getResponseNameSingleResult(), name);
 		assertResponse(response, getResponseAlpha2SingleResult(), alpha2);
 		assertResponse(response, getResponseAlpha3SingleResult(), alpha3);
-		assertResponse(response, getMessageFromPosition(1), messagePrefix + country + messagePostFix);
 	}
 	
 	@DataProvider(name = "Countries")

@@ -18,6 +18,7 @@ public class SearchWithKeyWordTest extends BaseRestTest{
 		// show output
 		show_output_service_from_uri(uri);
 		//		
+		assertResponseStatusCode(response, 200);
 		assertResponse(response, getMessageFromPosition(1), message_records_found);
 		assertResponse(response, getMessageFromPosition(0), getMessageMoreWebservicesAvailable());
 		assertResponse(response, getNameFromPosition(0), name);
