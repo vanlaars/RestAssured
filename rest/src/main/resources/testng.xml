@@ -10,9 +10,9 @@
     <test name="Test">
         <classes>
             <class name="assured.rest.RestAssuredTypes" />
-            <class name="assured.rest.countries.AlphaCode2Test" />
-            <class name="assured.rest.countries.SearchWithKeyWordTest" />     
-            <class name="assured.rest.countries.GetAllCountries" />          
+            <class name="assured.rest.countries.TestResourceGetCountriesAlpha2Code" />
+            <class name="assured.rest.countries.TestResourceGetCountriesAll" />     
+            <class name="assured.rest.countries.TestResourceSearchWith" />          
         </classes>
     </test>
 </suite>	
