@@ -15,7 +15,7 @@ public class RestAssuredTypes extends BaseRestTest {
 	private static final String VALUE_NAME = "India";
 	private static final String VALUE_ALPHA_CODE_2 = "IN";
 	private static final String VALUE_ALPHA_CODE_3 = "IND";
-	private static final String URI_INDIA = getBaseUri() + getResourceAlpha2() + VALUE_ALPHA_CODE_2;
+	private static final String URI_INDIA = getBaseUri() + getResourceAlpha2Uri() + VALUE_ALPHA_CODE_2;
 
 	
 

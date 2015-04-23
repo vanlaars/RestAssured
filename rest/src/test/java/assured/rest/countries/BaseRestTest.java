@@ -51,7 +51,7 @@ public class BaseRestTest {
 		return BASE_URI;
 	}
 	
-	public static String getResourceAlpha2() {
+	public static String getResourceAlpha2Uri() {
 		return GET_ALPHA2_RESOURCE;
 	}
 	
@@ -90,6 +90,10 @@ public class BaseRestTest {
 	
 	public void assertContentType(Response response, String contentType){
 		Assert.assertEquals(response.getContentType(), contentType);
+	}
+	
+	public void assertHeader(Response response, String headerType, String actual){
+		Assert.assertEquals(response.getHeader(headerType), actual);
 	}
 
 	
