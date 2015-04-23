@@ -14,17 +14,18 @@ public class AlphaCode2Test extends BaseRestTest{
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String alpha2, String alpha3) {
 		final String URI = URI_PREFIX + country;
-		final Response RESPONSE = get(URI);
+		final Response response = get(URI);
 		final String messagePrefix = "Country found matching code ["; 
 		final String messagePostFix = "].";
+		final String contentType = "application/json;charset=UTF-8";
 		//
-		show_output_service_from_uri(URI);
-		assertResponse(RESPONSE, getResponseNameSingleResult(), name);
-		assertResponse(RESPONSE, getResponseAlpha2SingleResult(), alpha2);
-		assertResponse(RESPONSE, getResponseAlpha3SingleResult(), alpha3);
-		assertResponse(RESPONSE, getMessageFromPosition(1), messagePrefix + country + messagePostFix);
+		assertResponseStatusCode(response, 200);
+		assertContentType(response, contentType);
+		assertResponse(response, getResponseNameSingleResult(), name);
+		assertResponse(response, getResponseAlpha2SingleResult(), alpha2);
+		assertResponse(response, getResponseAlpha3SingleResult(), alpha3);
+		assertResponse(response, getMessageFromPosition(1), messagePrefix + country + messagePostFix);
 	}
-	
 	
 	@DataProvider(name = "Countries")
 	 

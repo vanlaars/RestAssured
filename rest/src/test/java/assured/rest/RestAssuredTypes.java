@@ -21,10 +21,10 @@ public class RestAssuredTypes extends BaseRestTest {
 
 	@Test
 	public void search_for_india_with_response() {
-		final Response RESPONSE = get(URI_INDIA);
-		RESPONSE.then().assertThat().body(getResponseNameSingleResult(), equalTo(VALUE_NAME));
-		RESPONSE.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(VALUE_ALPHA_CODE_2));
-		RESPONSE.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(VALUE_ALPHA_CODE_3));
+		final Response response = get(URI_INDIA);
+		response.then().assertThat().body(getResponseNameSingleResult(), equalTo(VALUE_NAME));
+		response.then().assertThat().body(getResponseAlpha2SingleResult(), equalTo(VALUE_ALPHA_CODE_2));
+		response.then().assertThat().body(getResponseAlpha3SingleResult(), equalTo(VALUE_ALPHA_CODE_3));
 	}
 
 	@Test

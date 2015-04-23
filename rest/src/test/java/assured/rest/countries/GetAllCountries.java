@@ -13,10 +13,10 @@ public class GetAllCountries extends BaseRestTest{
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_all_countries(int objectNumber, String name, String alpha2, String alpha3) {
-		final Response RESPONSE = get(URI);
-		assertResponse(RESPONSE, getNameFromPosition(objectNumber), name);
-		assertResponse(RESPONSE, getAlpha2FromPosition(objectNumber), alpha2);
-		assertResponse(RESPONSE, getAlpha3FromPosition(objectNumber), alpha3);
+		final Response response = get(URI);
+		assertResponse(response, getNameFromPosition(objectNumber), name);
+		assertResponse(response, getAlpha2FromPosition(objectNumber), alpha2);
+		assertResponse(response, getAlpha3FromPosition(objectNumber), alpha3);
 	}
 	
 	

@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.util.logging.Logger;
 
+import org.junit.Assert;
+
 import assured.rest.RestAssuredTypes;
 
 import com.jayway.restassured.response.Response;
@@ -76,10 +78,22 @@ public class BaseRestTest {
 	
 	public static String getMessageFromPosition(int position) {
 		return String.format(RESPONSE_MESSAGES + "[%1$s]", position);		
-				// "RestResponse.messages[1]"
 	}
 	
 	public void assertResponse(Response response, String actual , String expected){ 
 		response.then().assertThat().body(actual, equalTo(expected));
+	}
+	
+	public void assertResponseStatusCode(Response response, int expected){ 
+		response.then().assertThat().statusCode(equalTo(expected));
+	}
+	
+	public void assertContentType(Response response, String contentType){
+		Assert.assertEquals(response.getContentType(), contentType);
+	}
+
+	
+	public String getMessageMoreWebservicesAvailable() {
+		return "More webservices are available at http://www.groupkt.com/post/f2129b88/services.htm";
 	}
 }
