@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import com.jayway.restassured.response.Response;
 
-public class SearchWithKeyWordTest extends BaseRestTest{
+public class TestResourceSearchWith extends BaseRestTest{
 	
 		
 	@Test (dataProvider = "Countries")

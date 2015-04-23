@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import com.jayway.restassured.response.Response;
 
-public class GetAllCountries extends BaseRestTest{
+public class TestResourceGetCountriesAll extends BaseRestTest{
 	
 	private static final String URI = getBaseUri() + getResourceAll();
 		
