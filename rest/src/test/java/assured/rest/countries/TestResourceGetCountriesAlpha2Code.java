@@ -19,9 +19,9 @@ public class TestResourceGetCountriesAlpha2Code extends BaseRestTest{
 		final String contentType = "application/json;charset=UTF-8";
 		//
 		assertResponseStatusCode(response, 200);
+		assertHeaders(response);
 		assertContentType(response, contentType);
 		assertResponse(response, messageFound, name, alpha2, alpha3);
-		assertHeaders(response);
 	}
 	
 	private void assertHeaders(Response response){
