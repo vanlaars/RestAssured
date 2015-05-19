@@ -12,7 +12,7 @@ public class TestResourceSearchWith extends BaseRestTest{
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_with_keyword_happy(String keyword, String name, String alpha2, String alpha3) {
-		final String uri = getBaseUri() + getResourceSearchWith(keyword);
+		final String uri = getResourceSearchWith(keyword);
 		final Response response = get(uri);
 		final String message_records_found = "Total [1] records found.";
 		// show output
@@ -32,7 +32,8 @@ public class TestResourceSearchWith extends BaseRestTest{
 	 
 	        return new Object[][] { 
 	        		{ "great", "United Kingdom of Great Britain and Northern Ireland" , "GB" , "GBR"},
-	        		{ "nether", "Netherlands", "NL", "NLD"}
+	        		{ "nether", "Netherlands", "NL", "NLD"},
+	        		{ "ital", "Italy" , "IT", "ITA"}
 	        		};
 	  }
 

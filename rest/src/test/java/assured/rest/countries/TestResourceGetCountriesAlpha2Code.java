@@ -9,11 +9,11 @@ import com.jayway.restassured.response.Response;
 
 public class TestResourceGetCountriesAlpha2Code extends BaseRestTest{
 	
-	private static final String URI_PREFIX = getBaseUri() + getResourceAlpha2Uri();	
+//	private static final String URI_PREFIX = getBaseUri() + getResourceAlpha2Uri();	
 	
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String alpha2, String alpha3) {
-		final String URI = URI_PREFIX + country;
+		final String URI = getResourceAlpha2Uri() + country;
 		final Response response = get(URI);
 		final String messageFound = "Country found matching code [" + country + "].";
 		final String contentType = "application/json;charset=UTF-8";
@@ -30,7 +30,6 @@ public class TestResourceGetCountriesAlpha2Code extends BaseRestTest{
 		assertHeader(response, "Transfer-Encoding", "chunked");
 		assertHeader(response, "Content-Encoding", "gzip");
 		assertHeader(response, "Connection", "Keep-Alive");
-		assertHeader(response, "Age", "0");
 	}
 	
 	private void assertResponse(Response response, String messageFound, String name, String alpha2, String alpha3){

@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import assured.rest.countries.BaseRestTest;
 
 import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.builder.ResponseBuilder;
 import com.jayway.restassured.response.Response;
 
 public class TestTypesAvailable extends BaseRestTest {
@@ -17,7 +16,7 @@ public class TestTypesAvailable extends BaseRestTest {
 	private static final String VALUE_NAME = "India";
 	private static final String VALUE_ALPHA_CODE_2 = "IN";
 	private static final String VALUE_ALPHA_CODE_3 = "IND";
-	private static final String URI_INDIA = getBaseUri() + getResourceAlpha2Uri() + VALUE_ALPHA_CODE_2;
+	private static final String URI_INDIA = getResourceAlpha2Uri() + VALUE_ALPHA_CODE_2;
 
 	
 
@@ -47,13 +46,6 @@ public class TestTypesAvailable extends BaseRestTest {
 				.assertThat().body(getResponseAlpha2SingleResult(), equalTo(VALUE_ALPHA_CODE_2))
 				.and()
 				.assertThat().body(getResponseAlpha3SingleResult(), equalTo(VALUE_ALPHA_CODE_3));
-	}
-	
-	@Test 
-	public void search_for_india_responseBuilder(){
-		ResponseBuilder resSpec = new ResponseBuilder();
-		resSpec.setStatusCode(200).setBody("").build();
-//		ResponseBuilder().setStatusCode(200).setBody(load("sample.xml")).build();
 	}
 	
 	@Test

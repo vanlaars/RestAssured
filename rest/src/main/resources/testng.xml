@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="methods" thread-count="20">
-        
-    <listeners>
-        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
-        <listener class-name="org.testng.reporters.SuiteHTMLReporter"/>
-    </listeners>
+<suite name="RestAssured countries" parallel="methods"
+	thread-count="20">
 
-    <test name="Test">
-        <classes>
-            <class name="assured.rest.RestAssuredTypes" />
-            <class name="assured.rest.countries.TestResourceGetCountriesAlpha2Code" />
-            <class name="assured.rest.countries.TestResourceGetCountriesAll" />     
-            <class name="assured.rest.countries.TestResourceSearchWith" />          
-        </classes>
-    </test>
+	<listeners>
+		<listener class-name="org.testng.reporters.TestHTMLReporter" />
+		<listener class-name="org.testng.reporters.SuiteHTMLReporter" />
+	</listeners>
+
+	<test name="Countries test example">
+		<classes>
+			<class name="assured.rest.TestTypesAvailable" />
+			<class name="assured.rest.TestWithBeforeAnnotation" />
+			<class name="assured.rest.countries.TestResourceGetCountriesAlpha2Code" />
+			<class name="assured.rest.countries.TestResourceGetCountriesAll" />
+			<class name="assured.rest.countries.TestResourceSearchWith" />
+		</classes>
+	</test>
 </suite>	

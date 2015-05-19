@@ -6,14 +6,15 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.logging.Logger;
 
 import org.junit.Assert;
+import org.testng.annotations.BeforeClass;
 
-import assured.rest.RestAssuredTypes;
+import assured.rest.TestWithBeforeAnnotation;
 
+import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public class BaseRestTest {
 	
-	private static final String BASE_URI = "http://services.groupkt.com/country/";
 	private static final String GET_ALPHA2_RESOURCE = "get/iso2code/";
 	private static final String GET_ALL_RESOURCE = "get/all";
 	private static final String SEARCH_WITH_RESOURCE = "search?text=";
@@ -27,13 +28,19 @@ public class BaseRestTest {
 	private static final String RESPONSE_ALPHA3_1_RESULT = RESPONSE_PREFIX + RESPONSE_ALPHA3;
 
 	private static final Logger LOGGER = Logger
-			.getLogger(RestAssuredTypes.class.getName());
+			.getLogger(TestWithBeforeAnnotation.class.getName());
+	
+	@BeforeClass
+	public void setUpBaseUri(){
+		RestAssured.baseURI = "http://services.groupkt.com/country";
+	}
 	
 	public void show_output_service_from_uri(String uri) {
 		final Response RESPONSE = get(uri);
-		LOGGER.info("We got response from " + uri + " with  \n" + RESPONSE.asString());
+		LOGGER.info("Response is	: \n" + RESPONSE.asString());
+		LOGGER.info("Headers are	: \n" + RESPONSE.getHeaders());
+		LOGGER.info("StatusCode is 	: \n" + RESPONSE.getStatusCode());
 	}
-	
 	
 	public static String getResponseNameSingleResult() {
 		return RESPONSE_NAME_1_RESULT;
@@ -46,11 +53,7 @@ public class BaseRestTest {
 	public static String getResponseAlpha3SingleResult() {
 		return RESPONSE_ALPHA3_1_RESULT;
 	}
-	
-	public static String getBaseUri() {
-		return BASE_URI;
-	}
-	
+
 	public static String getResourceAlpha2Uri() {
 		return GET_ALPHA2_RESOURCE;
 	}
