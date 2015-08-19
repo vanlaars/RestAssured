@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 
 import assured.rest.countries.BaseRestTest;
 
-import com.jayway.restassured.RestAssured;
-
 public class TestWithBeforeAnnotation extends BaseRestTest {
 
 	private static final String VALUE_NAME = "India";
@@ -27,14 +25,14 @@ public class TestWithBeforeAnnotation extends BaseRestTest {
 	
 	@BeforeTest
 	private void setUpResource(){
-		RestAssured.basePath = getResourceAlpha2Uri();
+		setResourcePathIso2Code();
 	}
 
 	
 	@Test
 	public void shouldFindIndiaViaIso2Code(){
-		get("IN").then()
-		.assertThat().body(RESPONSE_NAME_1_RESULT, equalTo(VALUE_NAME + 1))
+		get(VALUE_ALPHA_CODE_2).then()
+		.assertThat().body(RESPONSE_NAME_1_RESULT, equalTo(VALUE_NAME))
 		.and()
 		.assertThat().body(RESPONSE_ALPHA2_1_RESULT, equalTo(VALUE_ALPHA_CODE_2))
 		.and()

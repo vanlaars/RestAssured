@@ -13,8 +13,8 @@ public class TestResourceGetCountriesAlpha2Code extends BaseRestTest{
 	
 	@Test (dataProvider = "Countries")
 	public void search_for_countries_alpha2code(String country, String name, String alpha2, String alpha3) {
-		final String URI = getResourceAlpha2Uri() + country;
-		final Response response = get(URI);
+		setResourcePathIso2Code();
+		final Response response = get(country);
 		final String messageFound = "Country found matching code [" + country + "].";
 		final String contentType = "application/json;charset=UTF-8";
 		//

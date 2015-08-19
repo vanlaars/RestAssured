@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RestAssured countries" parallel="classes"
-	thread-count="1">
+	thread-count="20">
 
 	<listeners>
 		<listener class-name="org.testng.reporters.TestHTMLReporter" />
 		<listener class-name="org.testng.reporters.SuiteHTMLReporter" />
 	</listeners>
 
-	<test name="Examples of RestAssured Test">
+	<test name="Some new name">
 		<classes>
 			<class name="assured.rest.TestTypesAvailable" />
 			<class name="assured.rest.TestWithBeforeAnnotation" />
-		</classes>
-	</test>
-	
-	<test name="Example of Countries API, iso2code">
-		<classes>
-				<class name="assured.rest.countries.TestResourceGetCountriesAlpha2Code" />
-		</classes>
-	</test>
-	
-		<test name="Example of Countries API, get all countries">
-		<classes>
-			<class name="assured.rest.countries.TestResourceGetCountriesAll" />
-		</classes>
-	</test>
-	
-		
-		<test name="Example of Countries API, search with text">
-		<classes>
 			<class name="assured.rest.countries.TestResourceSearchWith" />
+			<class name="assured.rest.countries.TestResourceGetCountriesAlpha2Code" />
+			<class name="assured.rest.countries.TestResourceGetCountriesAll" />		
 		</classes>
 	</test>
-	
+
 </suite>	

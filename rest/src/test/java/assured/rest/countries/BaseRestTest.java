@@ -1,6 +1,5 @@
 package assured.rest.countries;
 
-import static com.jayway.restassured.RestAssured.get;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.logging.Logger;
@@ -8,15 +7,11 @@ import java.util.logging.Logger;
 import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 
-import assured.rest.TestWithBeforeAnnotation;
-
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 
 public class BaseRestTest {
 	
-	private static final String GET_ALPHA2_RESOURCE = "get/iso2code/";
-	private static final String GET_ALL_RESOURCE = "get/all";
 	private static final String SEARCH_WITH_RESOURCE = "search?text=";
 	private static final String RESPONSE_PREFIX = "RestResponse.result.";
 	private static final String RESPONSE_MESSAGES = "RestResponse.messages";
@@ -28,15 +23,30 @@ public class BaseRestTest {
 	private static final String RESPONSE_ALPHA3_1_RESULT = RESPONSE_PREFIX + RESPONSE_ALPHA3;
 
 	private static final Logger LOGGER = Logger
-			.getLogger(TestWithBeforeAnnotation.class.getName());
+			.getLogger(BaseRestTest.class.getName());
 	
 	@BeforeClass
 	public void setUpBaseUri(){
-		RestAssured.baseURI = "http://services.groupkt.com/country";
+		RestAssured.baseURI = "http://services.groupkt.com/country/";
 	}
 	
-	public void show_output_service_from_uri(String uri) {
-		final Response RESPONSE = get(uri);
+	public void setResourcePathIso2Code(){
+		RestAssured.basePath = "get/iso2code/";
+	}
+	
+	public void setResourcePathIso3Code(){
+		RestAssured.basePath = "get/iso3code/";
+	}
+	
+	public void setResourcePathGetAll(){
+		RestAssured.basePath = "get/all";
+	}
+	
+	public String getSearchWith(String keyword){
+		return SEARCH_WITH_RESOURCE + keyword;
+	}
+	
+	public void show_output_service_from_uri(Response RESPONSE) {
 		LOGGER.info("Response is	: \n" + RESPONSE.asString());
 		LOGGER.info("Headers are	: \n" + RESPONSE.getHeaders());
 		LOGGER.info("StatusCode is 	: \n" + RESPONSE.getStatusCode());
@@ -53,17 +63,9 @@ public class BaseRestTest {
 	public static String getResponseAlpha3SingleResult() {
 		return RESPONSE_ALPHA3_1_RESULT;
 	}
-
-	public static String getResourceAlpha2Uri() {
-		return GET_ALPHA2_RESOURCE;
-	}
-	
-	public static String getResourceAll(){
-		return GET_ALL_RESOURCE;
-	}
 	
 	public static String getResourceSearchWith(String text){
-		return SEARCH_WITH_RESOURCE + text;
+		return "http://services.groupkt.com/country/search?text=" + text;
 	}
 	
 	public static String getNameFromPosition(int position){

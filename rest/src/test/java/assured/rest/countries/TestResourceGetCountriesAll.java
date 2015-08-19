@@ -12,7 +12,8 @@ public class TestResourceGetCountriesAll extends BaseRestTest{
 		
 	@Test (dataProvider = "Countries")
 	public void search_for_all_countries(int objectNumber, String name, String alpha2, String alpha3) {
-		final Response response = get(getResourceAll());
+		setResourcePathGetAll();
+		Response response = get("");
 		assertResponse(response, getNameFromPosition(objectNumber), name);
 		assertResponse(response, getAlpha2FromPosition(objectNumber), alpha2);
 		assertResponse(response, getAlpha3FromPosition(objectNumber), alpha3);
